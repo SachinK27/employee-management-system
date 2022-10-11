@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^99notes.in$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.99notes.in$
+RewriteCond %{REQUEST_URI} !public/
+RewriteRule (.*) /public/$1 [L]

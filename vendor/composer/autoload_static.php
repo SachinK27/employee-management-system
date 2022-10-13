@@ -340,8 +340,8 @@ class ComposerStaticInitb83e80a5c8e0757664047654edfda1e6
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -1898,6 +1898,7 @@ class ComposerStaticInitb83e80a5c8e0757664047654edfda1e6
         'Illuminate\\Database\\Eloquent\\JsonEncodingException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/JsonEncodingException.php',
         'Illuminate\\Database\\Eloquent\\MassAssignmentException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/MassAssignmentException.php',
         'Illuminate\\Database\\Eloquent\\MassPrunable' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/MassPrunable.php',
+        'Illuminate\\Database\\Eloquent\\MissingAttributeException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/MissingAttributeException.php',
         'Illuminate\\Database\\Eloquent\\Model' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Model.php',
         'Illuminate\\Database\\Eloquent\\ModelNotFoundException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/ModelNotFoundException.php',
         'Illuminate\\Database\\Eloquent\\Prunable' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Eloquent/Prunable.php',
@@ -2224,6 +2225,11 @@ class ComposerStaticInitb83e80a5c8e0757664047654edfda1e6
         'Illuminate\\Mail\\MailManager' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Mail/MailManager.php',
         'Illuminate\\Mail\\MailServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Mail/MailServiceProvider.php',
         'Illuminate\\Mail\\Mailable' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Mail/Mailable.php',
+        'Illuminate\\Mail\\Mailables\\Address' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Mail/Mailables/Address.php',
+        'Illuminate\\Mail\\Mailables\\Attachment' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Mail/Mailables/Attachment.php',
+        'Illuminate\\Mail\\Mailables\\Content' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Mail/Mailables/Content.php',
+        'Illuminate\\Mail\\Mailables\\Envelope' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Mail/Mailables/Envelope.php',
+        'Illuminate\\Mail\\Mailables\\Headers' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Mail/Mailables/Headers.php',
         'Illuminate\\Mail\\Mailer' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Mail/Mailer.php',
         'Illuminate\\Mail\\Markdown' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Mail/Markdown.php',
         'Illuminate\\Mail\\Message' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Mail/Message.php',
@@ -2368,6 +2374,8 @@ class ComposerStaticInitb83e80a5c8e0757664047654edfda1e6
         'Illuminate\\Routing\\Controller' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Routing/Controller.php',
         'Illuminate\\Routing\\ControllerDispatcher' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php',
         'Illuminate\\Routing\\ControllerMiddlewareOptions' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Routing/ControllerMiddlewareOptions.php',
+        'Illuminate\\Routing\\Controllers\\HasMiddleware' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Routing/Controllers/HasMiddleware.php',
+        'Illuminate\\Routing\\Controllers\\Middleware' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Routing/Controllers/Middleware.php',
         'Illuminate\\Routing\\CreatesRegularExpressionRouteConstraints' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Routing/CreatesRegularExpressionRouteConstraints.php',
         'Illuminate\\Routing\\Events\\RouteMatched' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Routing/Events/RouteMatched.php',
         'Illuminate\\Routing\\Events\\Routing' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Routing/Events/Routing.php',

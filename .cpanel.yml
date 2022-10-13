@@ -1,4 +1,4 @@
-----
+---
 deployment:
   tasks:
     - export DEPLOYPATH=/home/chahalc/management-system.chahalacademy.com/

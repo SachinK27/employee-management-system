@@ -48,11 +48,11 @@
         <div class="main-wrapper">
 		
 			<!-- Header -->
-            @include('admin.layouts.header')
+            @include('user.level1.layouts.header')
 			<!-- /Header -->
 			
 			<!-- Sidebar -->
-            @include('admin.layouts.sidebar')
+            @include('user.level1.layouts.sidebar')
 			<!-- /Sidebar -->
 			
 			<!-- Page Wrapper -->

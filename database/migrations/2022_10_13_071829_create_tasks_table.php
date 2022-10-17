@@ -22,6 +22,7 @@ return new class extends Migration
             $table->dateTime('assign_date');
             $table->dateTime('deadline');
             $table->string('status');
+            $table->string('priority');
             $table->timestamps();
         });
     }

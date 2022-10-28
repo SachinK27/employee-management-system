@@ -39,6 +39,7 @@ Route::post('getPlead',[AuthController::class,'getPlead'])->name('getPlead');
 Route::get('levelthree',[HomeController::class,'level3'])->name('l3dash');
 Route::get('changeStatus/{id}',[HomeController::class,'changeStatus'])->name('changeStatus');
 Route::post('updateStatus',[HomeController::class,'updateStatus'])->name('updateStatus');
+Route::post('updateStatuss',[HomeController::class,'updateStatuss'])->name('updateStatuss');
 Route::get('/login',[App\Http\Controllers\UsersloginController::class,'Loginpage'])->middleware('alreadyloggedin','AlreadyLoggedInlevel1','AlreadyLoggedInlevel2','AlreadyLoggedInlevel3');
 
 // faisal routes
@@ -60,7 +61,7 @@ Route::get('/login',[App\Http\Controllers\UsersloginController::class,'Loginpage
     // for level2
 
     Route::group(['prefix' => '/level2'],function(){
-        Route::get('dashboard',[App\Http\Controllers\Users\Level2Controller::class,'index'])->middleware('Islevel2');
+        Route::get('dashboard',[App\Http\Controllers\Users\Level2Controller::class,'index'])->name('level2dash')->middleware('Islevel2');
         Route::get('logout',[App\Http\Controllers\UsersloginController::class,'level2_logout']);
         Route::get('level3task',[App\Http\Controllers\Users\Level2Controller::class,'level3Task'])->name('level3task');
 
@@ -69,7 +70,7 @@ Route::get('/login',[App\Http\Controllers\UsersloginController::class,'Loginpage
     // for level3 
 
     Route::group(['prefix' =>'/level3'],function(){
-        Route::get('dashboard',[App\Http\Controllers\Users\Level3Controller::class,'index'])->middleware('Islevel3');
+        Route::get('dashboard',[App\Http\Controllers\Users\Level3Controller::class,'index'])->name('level3dash')->middleware('Islevel3');
         Route::get('logout',[App\Http\Controllers\UsersloginController::class,'level3_logout']);
 
     });

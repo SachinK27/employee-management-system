@@ -17,8 +17,8 @@ class Level2Controller extends Controller
             $level2=array();
             if(Session::has('level2loginId')){
             $level2=User::where('id' , '=' , Session::get('level2loginId'))->first();
-            $data=task::where('assigned_to',$level2->name)->get();
-            return view('user.level2.index',compact(['level2','data']));
+            $data=task::where('assigned_to',$level2->id)->get();
+            return view('user.level2.indexx',compact(['level2','data']));
             }
            
         

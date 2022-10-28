@@ -16,8 +16,8 @@ class Level3Controller extends Controller
             $level3=array();
             if(Session::has('level3loginId')){
             $level3=User::where('id' , '=' , Session::get('level3loginId'))->first();
-            $data=task::where('assigned_to',$level3->name)->get();
-            return view('user.level3.indexx',compact(['level3','data']));
+            $data=task::where('assigned_to',$level3->id)->get();
+            return view('user.level3.index',compact(['level3','data']));
             }
             
         }

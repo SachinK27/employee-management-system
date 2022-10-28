@@ -1,4 +1,4 @@
-@extends('user.level2.layouts.master')
+@extends('user.level3.layouts.master')
 
 	@section('page-title', 'My Tasks')
 	
@@ -44,10 +44,10 @@
 										@foreach($data as $task)
 										<tr>
 											<td>1</td>
-											<td>{{$task->title}}</td>
-											<td>All Departments</td>
-											<td>Lorem ipsum dollar</td>
-											<td>19 Feb 2019</td>
+											<td>{{$task->task}}</td>
+											<td>{{$task->assigned_by}}</td>
+											<td>{{$task->assign_date}}</td>
+											<td>{{$task->deadline}}</td>
 											<td class="text-center">
 												<div class="dropdown action-label">
 													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">

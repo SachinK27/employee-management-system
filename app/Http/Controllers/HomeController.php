@@ -82,11 +82,33 @@ class HomeController extends Controller
             $result=$task->save();
             if($result)
             {
-                return redirect()->route('l3dash')->with('success','status updated successfully');
+                return redirect()->route('level2dash')->with('success','status updated successfully');
             }
             else
             {
-                return redirect()->route('l3dash')->with('fail','failed please try again');
+                return redirect()->route('level2dash')->with('fail','failed please try again');
+            }
+
+            
+    }
+    public function updateStatuss(Request $request)
+    {
+       
+        $request->validate([
+            'status' => 'required',
+            ]);
+            $id=$request->id;
+            $task=task::find($id);
+            $task->notes=$request->note;
+            $task->status=$request->status;
+            $result=$task->save();
+            if($result)
+            {
+                return redirect()->back()->with('success','status updated successfully');
+            }
+            else
+            {
+                return redirect()->back()->with('fail','failed please try again');
             }
 
             

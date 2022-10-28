@@ -8,13 +8,14 @@
 							<li class="submenu">
 								<a href="#"><i class="la la-dashboard"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="index">Admin Dashboard</a></li>
-									<li><a href="employee-dashboard">Employee Dashboard</a></li>
+									<li><a href="{{route('level2dash')}}">Dashboard</a></li>
 								</ul>
 							</li>
 							<li class="submenu">
 								<a href="{{route('level3task')}}"><i class="la la-cube"></i> <span> My Team Task</span> <span class="menu-arrow"></span></a>
-								<ul style="">
+								<ul style="display: none;">
+									<li><a href="{{route('level3task')}}">My Team Tasks</a></li>
+								</ul>
 		                    </li>
 									<!-- <li><a href="chat">Chat</a></li>
 									 <li class="submenu">
@@ -25,7 +26,7 @@
 											<li><a href="outgoing-call">Outgoing Call</a></li>
 											<li><a href="incoming-call">Incoming Call</a></li>
 										</ul>
-									</li> --> -->
+									</li> --> 
 									<!-- <li><a href="events">Calendar</a></li>
 									<li><a class="active" href="contacts">Contacts</a></li>
 									<li><a href="inbox">Email</a></li>
@@ -259,8 +260,7 @@
 										</ul>
 									</li>
 									<li> -->
-										<a href="javascript:void(0);"> <span>Level 1</span></a>
-									</li>
+										
 								</ul>
 							</li>
 						</ul>

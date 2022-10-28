@@ -16,7 +16,8 @@ class AdminController extends Controller
     public function users()
     {
         $data=departments::all();
-        return view('admin.registration',compact('data'));
+        $user=User::all();
+        return view('admin.registration',compact(['data','user']));
     }   
     // admin dashboard
     public function Admin_Dashboard(){

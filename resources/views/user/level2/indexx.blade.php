@@ -1,4 +1,4 @@
-@extends('user.level3.layouts.master')
+@extends('user.level2.layouts.master')
 
 	@section('page-title', 'My Tasks')
 	
@@ -69,8 +69,8 @@
 											<td class="text-center">
 												<div class="dropdown action-label">
 													<a class="" href="#" data-toggle="dropdown" aria-expanded="false">
-														
-														@if($task->status==0)
+														<!-- <i class="fa fa-dot-circle-o text-info"></i> {{$task->status}} -->
+                                                        @if($task->status==0)
                                                         <p>Assigned</p>
                                                         @elseif($task->status==1)
                                                         <p>In-Progress</p>
@@ -81,6 +81,7 @@
                                                         @else
                                                         <p>Reviewed</p>
                                                         @endif
+                                                        
 													</a>
 													<div class="dropdown-menu dropdown-menu-right">
 														<!-- <a class="dropdown-item" href="{{ route('changeStatus',[$task->id,'status'=>'In-Progress']) }}"><i class="fa fa-dot-circle-o text-secondary"></i> In-Progress </a>
@@ -112,7 +113,7 @@
 								</button>
 							</div>
 							<div class="modal-body">
-                                <form action="{{route('updateStatuss')}}" method="post">
+                                <form action="{{route('updateStatus')}}" method="post">
 									@csrf
 									<div class="row">
 										<div class="col-sm-6">

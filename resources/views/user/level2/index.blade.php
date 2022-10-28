@@ -42,12 +42,18 @@
 									</thead>
 									<tbody>
 										@foreach($data as $task)
+										<?php
+                                         
+                                         $monthnumber=date('m', strtotime($task->assign_date));
+										 $monthName = date('F', mktime(0, 0, 0, $monthnumber, 10));
+										 $assignDate= date('d', strtotime($task->assign_date))."-".$monthName; 
+                                        ?>
 										<tr>
 											<td>1</td>
-											<td>{{$task->title}}</td>
-											<td>All Departments</td>
-											<td>Lorem ipsum dollar</td>
-											<td>19 Feb 2019</td>
+											<td>{{$task->task}}</td>
+											<td>{{$task->assigned_by}}</td>
+											<td>{{ $assignDate }}</td>
+											<td>{{$task->deadline}}</td>
 											<td class="text-center">
 												<div class="dropdown action-label">
 													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
@@ -125,6 +131,8 @@
 												<label>Select Project</label>
 												<select class="select" name="company" id="company">
 													<option value="" selected disabled>Select Option</option>
+													<option value="TCS">TCS</option>
+													<option value="infosys" >Infosys</option>
 												</select>
 												@if ($errors->has('company'))
                                                 <span class="text-danger">{{ $errors->first('company') }}</span>

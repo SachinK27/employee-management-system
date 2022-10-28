@@ -5,37 +5,56 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\departments;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Mail;
 use App\Mail\RegistrationMail;
+use Illuminate\Support\Facades\Hash;
 
 
 
 class AuthController extends Controller
 {
+    public function users()
+    {
+        $data=departments::all();
+        return view('admin.registration',compact('data'));
+    }   
     public function saveUser(Request $request)
     {
+       
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'mobNo' => 'required',
+            'phone' => 'required|numeric|min:10',
             'gender' => 'required',
             'dob' => 'required|date',
-            'department' => 'required'
+            'department' => 'required',
+            'level' => 'required|int',
 
         ]);
+        
+        
         $password=Str::random(10);
         $user= new User();
         $user->name=$request->name;
         $user->email=$request->email;
-        $user->phone=$request->mobNo;
+        $user->phone=$request->phone;
         $user->gender=$request->gender;
         $user->dob=$request->dob;
-        $user->level="level1";
+        $user->level=$request->level;
         $user->department=$request->department;
-        $user->subordinate_to="admin";
-        $user->password=$password;
+        if($request->level==3)
+        {
+            $user->subordinate_to=$request->subordinateTo;
+        }
+        else
+        {
+            $user->subordinate_to=0;
+        }
+       
+        $user->password=Hash::make($password);
         $user->hire_date=Carbon::now();
         $user->status="active";
         $mailData = [
@@ -44,11 +63,28 @@ class AuthController extends Controller
         ];
 
         Mail::to($request->email)->send(new RegistrationMail($mailData));
-        $user->save();
-           
-        echo "registration successfull and email send successfully";
-        exit;
+        $result=$user->save();
+           if($result)
+           {
+            return redirect()->route('viewUsers')->with('success','user Created Successfully and mail with password sent successfully');
+           }
+           else
+           {
+            return redirect()->route('viewUsers')->with('fail','opeartion fail please try again');
+           }
+        
                 
 
+    }
+    public function getPlead(Request $request)
+    {
+        if($request->level==3)
+        {
+            $Plead = User::where('isAdmin',0)->where('level',2)->get(['id','name']);
+            //  $Phead = User::all();
+             return response()->json($Plead);
+        }
+        
+   
     }
 }

@@ -15,13 +15,14 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
+            $table->text('task');
             $table->string('assigned_by');
             $table->string('assigned_to');
             $table->dateTime('assign_date');
             $table->dateTime('deadline');
             $table->string('status');
+            $table->string('notes')->nullable();
+            $table->string('priority');
             $table->timestamps();
         });
     }

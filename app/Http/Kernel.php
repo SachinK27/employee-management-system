@@ -36,6 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            
         ],
 
         'api' => [
@@ -53,6 +54,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
+        'alreadyloggedin' => \App\Http\Middleware\AlreadyloggedInAdmin::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
@@ -63,5 +65,15 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'isAdmin' => \App\Http\Middleware\IsAdmin::class,
+        'Islevel1' => \App\Http\Middleware\level1::class,
+        'Islevel2' => \App\Http\Middleware\level2::class,
+        'Islevel3' => \App\Http\Middleware\level3::class,
+        'IsLoggedinAdmin' =>\App\Http\Middleware\AlreadylogedInAdmin::class,
+        'AlreadyLoggedInlevel1' =>\App\Http\Middleware\AlreadyLoggedInlevel1::class,
+        'AlreadyLoggedInlevel2' =>\App\Http\Middleware\AlreadyLoggedInlevel2::class,
+        'AlreadyLoggedInlevel3' =>\App\Http\Middleware\AlreadyLoggedInlevel3::class,
+        
+        
     ];
 }

@@ -190,7 +190,7 @@
                                                                             <tbody>
                                                                                 <tr>
                                                                                     <td class="esd-block-text es-p20t es-p20b es-p30r es-p30l es-m-txt-l" bgcolor="#ffffff" align="left">
-                                                                                        <p>We're excited to have you get started. First, you need to confirm your account. Just press the button below.</p>
+                                                                                        <p>Your Account Is Created Successfully. use below Login Creadentials Email:{{$mailData['email']}}  and Password :-{{$mailData['password']}}.</p>
                                                                                     </td>
                                                                                 </tr>
                                                                                 <tr>

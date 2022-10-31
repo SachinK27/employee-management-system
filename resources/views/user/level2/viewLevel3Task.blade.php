@@ -32,8 +32,7 @@
 									<thead>
 										<tr>
 											<th style="width: 30px;">#</th>
-											<th>Title</th>
-											<th>Assigned By </th>
+											<th>Task</th>
 											<th>Start Date </th>
 											<th>Deadline </th>
 											<th class="text-center">Status</th>
@@ -42,26 +41,33 @@
 									</thead>
 									<tbody>
 										@foreach($tasks as $task)
+										<?php
+                                          $assign_date=$task->assign_date;
+										  $monthNum=substr($assign_date,2,2);
+										  $month_name = date("F", mktime(0, 0, 0, $monthNum, 10));
+										  $assignDate=date('d', strtotime($task->assign_date));
+										  $assignnDatee=$assignDate." ".$month_name;
+										  $deadline=$task->deadline;
+										  $monthNumm=substr($deadline,2,2);
+										  $month_namee = date("F", mktime(0, 0, 0, $monthNumm, 10));
+										  $deadlineDate=date('d',strtotime($task->deadline));
+										  $deadlineTime=date('h:m a',strtotime($task->deadline));
+										  $deadline=$deadlineDate." ".$month_namee." ".$deadlineTime;
+
+                                        ?>
 										<tr>
 											<td>1</td>
 											<td>{{$task->task}}</td>
-											<td>{{$task->assigned_by}}</td>
-											<td>{{$task->assign_date}}</td>
-											<td>{{$task->deadline}}</td>
+											<td>{{$assignnDatee}}</td>
+											<td>{{$deadline}}</td>
 											<td class="text-center">
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-danger"></i> New 
-													</a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Open</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Reopened</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> On Hold</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Closed</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> In Progress</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Cancelled</a>
-													</div>
-												</div>
+								                @if($task->status==1)
+												<p style="color:green">Low</p>
+												@elseif($task->status==2)
+												<p style="color:blue">medium</p>
+												@else
+												<p style="color:red">High</p>
+												@endif
 											</td>
 											<td class="text-right">
 												<div class="dropdown dropdown-action">
@@ -150,7 +156,7 @@
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label>Deadline</label>
-												<input class="form-control" name="deadline" id="deadline" type="date">
+												<input class="form-control" name="deadline" id="deadline" type="datetime-local">
 												@if ($errors->has('deadline'))
 												<span class="text-danger">{{ $errors->first('deadline') }}</span>
 												@endif
@@ -168,7 +174,6 @@
 				<!-- /Add Ticket Modal -->
 				
             </div>
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 			
@@ -222,10 +227,10 @@
 
 				$(document).ready(function () {
 					$.ajaxSetup({
-						headers: {
-							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-						}
-					});
+                    headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                    });
 					$('#modalTrigger').click(function(){
 						
 						$.ajax({

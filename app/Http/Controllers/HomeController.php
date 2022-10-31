@@ -9,7 +9,10 @@ use Illuminate\Http\Request;
 use App\Models\task;
 class HomeController extends Controller
 {
-
+    public function landing()
+    {
+        return view('admin.login');
+    }
     public function test()
     {
         return view('admin.indexx');
@@ -82,11 +85,11 @@ class HomeController extends Controller
             $result=$task->save();
             if($result)
             {
-                return redirect()->route('level2dash')->with('success','status updated successfully');
+                return redirect()->back()->with('success','status updated successfully');
             }
             else
             {
-                return redirect()->route('level2dash')->with('fail','failed please try again');
+                return redirect()->back()->with('fail','failed please try again');
             }
 
             

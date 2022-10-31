@@ -1,4 +1,4 @@
-@extends('user.level3.layouts.master')
+@extends('user.level1.layouts.master')
 
 	@section('page-title', 'My Tasks')
 	
@@ -31,48 +31,68 @@
 								<table class="table table-striped custom-table mb-0 datatable">
 									<thead>
 										<tr>
-											<th style="width: 30px;">#</th>
+											<th style="width: 30px;">Sr.No</th>
 											<th>Title</th>
-											<th>Assigned By </th>
+											<th>Priority</th>
 											<th>Start Date </th>
 											<th>Deadline </th>
 											<th class="text-center">Status</th>
-											<th class="text-right">Action</th>
 										</tr>
 									</thead>
 									<tbody>
-										@foreach($data as $task)
+										<?php $i=0; ?>
+										@foreach($allTask as $task)
+									   
+										<?php
+										$i++;
+											$assign_date=$task->assign_date;
+                                            $monthNum=substr($assign_date,2,2);
+                                            $month_name = date("F", mktime(0, 0, 0, $monthNum, 10));
+                                            $assignDate=date('d', strtotime($task->assign_date));
+                                            $assignnDatee=$assignDate." ".$month_name;
+											$deadline=$task->deadline;
+											$monthNumm=substr($deadline,2,2);
+                                            $month_namee = date("F", mktime(0, 0, 0, $monthNumm, 10));
+											$deadlineDate=date('d',strtotime($task->deadline));
+											$deadlineTime=date('h:m a',strtotime($task->deadline));
+											$deadline=$deadlineDate." ".$month_namee." ".$deadlineTime;
+
+											
+
+										?>
 										<tr>
-											<td>1</td>
+											<td>{{$i}}</td>
 											<td>{{$task->task}}</td>
-											<td>{{$task->assigned_by}}</td>
-											<td>{{$task->assign_date}}</td>
-											<td>{{$task->deadline}}</td>
+											@if($task->priority==1)
+											<td style="color:green">Low</td>
+											@elseif($task->priority==2)
+											<td style="color:blue">Medium</td>
+											@else
+											<td style="color:red">High</td>
+											@endif
+											<td>{{$assignnDatee}}</td>
+											<td>{{$deadline}}</td>
 											<td class="text-center">
 												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-danger"></i> New 
+													<a class="" href="#" data-toggle="dropdown" aria-expanded="false">
+														
+														@if($task->status==0)
+                                                        <p>Assigned</p>
+                                                        @elseif($task->status==1)
+                                                        <p>In-Progress</p>
+                                                        @elseif($task->status==2)
+                                                        <p>Pending</p>
+                                                        @elseif($task->status==3)
+                                                        <p>completed</p>
+                                                        @else
+                                                        <p>Reviewed</p>
+                                                        @endif
 													</a>
 													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Open</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Reopened</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> On Hold</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Closed</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> In Progress</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Cancelled</a>
 													</div>
 												</div>
 											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#"><i class="fa fa-download m-r-5"></i> Download</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_policy"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_policy"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
+										
 										</tr>
 										@endforeach
 									</tbody>
@@ -150,7 +170,7 @@
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label>Deadline</label>
-												<input class="form-control" name="deadline" id="deadline" type="date">
+												<input class="form-control" name="deadline" id="deadline" type="datetime-local">
 												@if ($errors->has('deadline'))
 												<span class="text-danger">{{ $errors->first('deadline') }}</span>
 												@endif

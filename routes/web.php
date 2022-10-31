@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CookieController;
+use App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +18,14 @@ use App\Http\Controllers\CookieController;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.login');
-});
-
+// Route::get('/', function () {
+//     return view('admin.login');
+// });
+Route::get('/',[HomeController::class,'landing'])->name('home');
 Route::get('/registration',[HomeController::class,'test'])->name('registration');
 Route::post('/saveUser',[AuthController::class,'saveUser'])->name('registration');
-Route::get('/loginpage', function () {
-    return view('admin.login');
+Route::get('/demo', function () {
+    return view('mails.welcome-mail');
 });
 Route::get('/blank', function () {
     return view('admin.blank-page');
@@ -45,7 +46,7 @@ Route::get('/login',[App\Http\Controllers\UsersloginController::class,'Loginpage
 // faisal routes
     //  for admin  
     Route::post('login/login',[App\Http\Controllers\UsersloginController::class,'CheckUsers']);
-    Route::get('/admin/dashboard',[HomeController::class,'registration'])->middleware('isAdmin');
+    Route::get('/admin/dashboard',[HomeController::class,'registration'])->name('adminHome')->middleware('isAdmin');
     Route::get('/users',[AuthController::class,'users'])->name('viewUsers');
     Route::get('/admin/dashboard/users',[App\Http\Controllers\AdminController::class,'users'])->middleware('isAdmin')->name('viewUsers');
     Route::get('/admin/logout',[App\Http\Controllers\UsersloginController::class,'Admin_logout']);
@@ -53,7 +54,7 @@ Route::get('/login',[App\Http\Controllers\UsersloginController::class,'Loginpage
     // for level1
     Route::group(['prefix' => '/level1'],function(){
         
-    Route::get('dashboard',[App\Http\Controllers\Users\Level1Controller::class,'index'])->middleware('Islevel1');
+    Route::get('dashboard',[App\Http\Controllers\Users\Level1Controller::class,'index'])->middleware('Islevel1')->name('l1dash');
     Route::get('logout',[App\Http\Controllers\UsersloginController::class,'level1_logout']);
 
     });
@@ -85,6 +86,15 @@ Route::get('/login',[App\Http\Controllers\UsersloginController::class,'Loginpage
         Route::post('/update/status/{id}', [UserController::class, 'changeStatus'])->name('user.update.status');
     });
 
+    Route::prefix('project')->group(function () {
+        Route::get('/list', [ProjectController::class, 'index'])->name('project.list');
+        Route::get('/list/fetch', [ProjectController::class, 'getData'])->name('project.list.fetch');
+        Route::post('/add', [ProjectController::class, 'add'])->name('project.add');
+        Route::get('/view/edit/{id}', [ProjectController::class, 'viewEdit'])->name('project.view.edit');
+        Route::post('/update/{id}', [ProjectController::class, 'update'])->name('project.update');
+        Route::post('/update/status/{id}', [ProjectController::class, 'changeStatus'])->name('project.update.status');
+    });
+
 
     //cookie routes
 Route::post('/create/cookie', [CookieController::class, 'create'])->name('set.cookie');
@@ -97,3 +107,10 @@ Route::post('create-task', [App\Http\Controllers\TaskController::class, 'createT
 Route::post('getUsers', [App\Http\Controllers\TaskController::class, 'getUsers']);
 Route::post('getCompany', [App\Http\Controllers\TaskController::class, 'getCompany']);
 Auth::routes();
+Route::prefix('l1')->group(function () {
+    Route::view('/', 'user.level1.index');
+    Route::get('/tasks', [App\Http\Controllers\TaskController::class, 'index_l1']);
+    
+});
+
+Route::get('logout',[AuthController::class,'logout'])->name('logout');

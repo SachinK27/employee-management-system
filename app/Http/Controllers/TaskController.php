@@ -17,6 +17,11 @@ class TaskController extends Controller
         $allNotification = Notification::get();
         return view('user.level2.my-task', compact('allTask','allNotification'));
     }
+    public function index_l1() {
+        $allTask = Task::get();
+        $allNotification = Notification::get();
+        return view('user.level1.my-task', compact('allTask','allNotification'));
+    }
 
     public function createTask(Request $request) {
 

@@ -10,7 +10,10 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Mail;
 use App\Mail\RegistrationMail;
+use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Hash;
+use Session;
+ 
 
 
 
@@ -61,16 +64,16 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => $password,
         ];
-
-        Mail::to($request->email)->send(new RegistrationMail($mailData));
+         
+        Mail::to($request->email)->send(new WelcomeMail($mailData));
         $result=$user->save();
            if($result)
            {
-            return redirect()->route('viewUsers')->with('success','user Created Successfully and mail with password sent successfully');
+            return redirect()->back()->with('success','user Created Successfully and mail with password sent successfully');
            }
            else
            {
-            return redirect()->route('viewUsers')->with('fail','opeartion fail please try again');
+            return redirect()->back()->with('fail','opeartion fail please try again');
            }
         
                 
@@ -86,5 +89,11 @@ class AuthController extends Controller
         }
         
    
+    }
+    public function logout()
+    {
+        auth()->logout();
+        Session::flush();
+        return redirect()->route('home');
     }
 }

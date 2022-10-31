@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('company', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('address_line_1');
+            $table->string('address_line_1')->nullable();
             $table->string('address_line_2')->nullable();
-            $table->string('city');
-            $table->string('state');
-            $table->string('pin_code');
-            $table->string('country');
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('pin_code')->nullable();
+            $table->string('country')->nullable();
             $table->enum('status', ['active', 'deactive']);
             $table->timestamps();
         });

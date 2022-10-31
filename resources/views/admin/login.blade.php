@@ -32,7 +32,7 @@
 		<!-- Main Wrapper -->
         <div class="main-wrapper">
 			<div class="account-content">
-				<a href="job-list.html" class="btn btn-primary apply-btn">Apply Job</a>
+				<a href="job-list.html" class=""></a>
 				<div class="container">
 				
 					<!-- Account Logo -->
@@ -75,8 +75,8 @@
 											
 										</div>
 										<div class="col-auto">
-											<a class="text-muted" href="forgot-password.html">
-												Forgot password?
+											<a class="" href="forgot-password.html">
+												
 											</a>
 										</div>
 									</div>
@@ -89,7 +89,7 @@
 									<button class="btn btn-primary account-btn" type="submit">Login</button>
 								</div>
 								<div class="account-footer">
-									<p>Don't have an account yet? <a href="register.html">Register</a></p>
+									<p> <a href="register.html"></a></p>
 								</div>
 							</form>
 							<!-- /Account Form -->

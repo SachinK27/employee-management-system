@@ -7,34 +7,40 @@
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
         <meta name="author" content="Dreamguys - Bootstrap Admin Template">
         <meta name="robots" content="noindex, nofollow">
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+		
         <title>@yield('page-title')</title>
-		
-		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/favicon.png')}}">
-		
-		<!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
-		
-		<!-- Fontawesome CSS -->
-        <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}">
-		
-		<!-- Lineawesome CSS -->
-        <link rel="stylesheet" href="{{asset('assets/css/line-awesome.min.css')}}">
-		
-		<!-- Datatable CSS -->
-		<link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
-		
-		<!-- Select2 CSS -->
-		<link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
-		
-		<!-- Datetimepicker CSS -->
-		<link rel="stylesheet" href="{{asset('assets/css/bootstrap-datetimepicker.min.css')}}">
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/favicon.png')}}">
 
-		<!-- Chart CSS -->
-		<link rel="stylesheet" href="{{asset('assets/plugins/morris/morris.css')}}">
-		
-		<!-- Main CSS -->
-        <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.css">
+<script src="{{asset('assets/js/jquery-3.5.1.min.js')}}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+
+<!-- Fontawesome CSS -->
+<link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}">
+
+<!-- Lineawesome CSS -->
+<link rel="stylesheet" href="{{asset('assets/css/line-awesome.min.css')}}">
+
+<!-- Datatable CSS -->
+<link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
+
+<!-- Select2 CSS -->
+<link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
+
+<!-- Datetimepicker CSS -->
+<link rel="stylesheet" href="{{asset('assets/css/bootstrap-datetimepicker.min.css')}}">
+
+<!-- Chart CSS -->
+<link rel="stylesheet" href="{{asset('assets/plugins/morris/morris.css')}}">
+
+<!-- Main CSS -->
+<link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 		
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -63,7 +69,7 @@
 		<!-- /Main Wrapper -->
 		
 		<!-- jQuery -->
-        <script src="{{asset('assets/js/jquery-3.5.1.min.js')}}"></script>
+        <!-- <script src="{{asset('assets/js/jquery-3.5.1.min.js')}}"></script> -->
 		
 		<!-- Bootstrap Core JS -->
         <script src="{{asset('assets/js/popper.min.js')}}"></script>

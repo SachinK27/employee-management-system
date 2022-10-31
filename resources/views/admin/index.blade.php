@@ -298,4 +298,30 @@
 					</div>
 				</div>
 				<!-- /Add User Modal -->
+				<script type="text/javascript">
+
+$(document).ready(function () {
+    $.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+    $('#level').on('change',function(e) {
+var level = $("#level").val();
+$.ajax({
+url:"{{ url('getPlead') }}",
+type:"POST",
+data: {
+"level": level
+},
+success:function (data) {
+$('#subordinate').empty();
+$.each(data,function(key,value){
+$('#subordinate').append('<option value="'+value.id+'">'+value.name+'</option>');
+})
+}
+})
+});
+});
+</script>
 		@endsection

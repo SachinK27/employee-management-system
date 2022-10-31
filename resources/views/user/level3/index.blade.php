@@ -14,9 +14,12 @@
 							<div class="col-sm-12">
 								<h3 class="page-title">My Tasks</h3>
 								<ul class="breadcrumb">
-									<li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+									<li class="breadcrumb-item"><a href="#">Dashboard</a></li>
 									<li class="breadcrumb-item active">My tasks</li>
 								</ul>
+							</div>
+							<div class="col-auto float-right ml-auto">
+								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#create_task" id="modalTrigger"><i class="fa fa-plus"></i> Create new task</a>
 							</div>
 						</div>
 					</div>
@@ -34,6 +37,7 @@
 											<th>Start Date </th>
 											<th>Priority</th>
 											<th>Deadline </th> -->
+											<th>Priority</th>
 											<th class="text-center">Status</th>
 											<th>Action</th>
 											<!-- <th class="text-right">Action</th> -->
@@ -62,6 +66,13 @@
 										<tr>
 											<td>{{$i++}}</td>
 											<td>{{$task->task}}</td>
+											@if($task->priority==1)
+											<td style="color:green">Low</td>
+											@elseif($task->priority==2)
+											<td style="color:blue">Medium</td>
+											@else
+											<td style="color:red">High</td>
+											@endif
 											<!-- <td>{{$task->assigned_by}}</td>
 											<td>{{ date('d-m', strtotime($task->assign_date)) }}</td>
 											<td>{{$task->priority}}</td>
@@ -95,7 +106,7 @@
 													<div class="dropdown-menu dropdown-menu-right">
 													
 														<!-- <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_policy"><i class="fa fa-pencil m-r-5"></i> Edit</a> -->
-														<a href="#" class="dropdown-item" data-toggle="modal" data-target="#add_user{{$task->id}}"><i class="fa fa-eye"></i> View Task Details</a>
+														<a href="#" class="dropdown-item" data-toggle="modal" data-target="#add_user{{$task->id}}"><i class="fa fa-edit"></i> Update Task</a>
 										
 													</div>
 												</div>
@@ -189,6 +200,90 @@
                 </div>
 				<!-- /Page Content -->
 				
+<!-- add task create task -->
+<div id="create_task" class="modal custom-modal fade" role="dialog">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Create new task</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form action="{{url('create-task')}}" method="POST" id="new-task">
+									@csrf
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="form-group">
+												<label>Task Detail</label>
+												<textarea class="form-control" name="desc" id="desc" cols="30" rows="10"></textarea>
+												@if ($errors->has('desc'))
+                                                <span class="text-danger">{{ $errors->first('desc') }}</span>
+                                                @endif
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Assign To</label>
+												<select class="select" name="assignTo" id="assignTo">
+													<option value="" selected disabled>Select Option</option>
+												</select>
+												@if ($errors->has('assignTo'))
+                                                <span class="text-danger">{{ $errors->first('assignTo') }}</span>
+                                                @endif
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Select Project</label>
+												<select class="select" name="company" id="company">
+													<option value="" selected disabled>Select Option</option>
+												</select>
+												@if ($errors->has('company'))
+                                                <span class="text-danger">{{ $errors->first('company') }}</span>
+                                                @endif
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Priority</label>
+												<select class="select" name="priority" id="priority">
+													<option value="" selected disabled>Select</option>
+													<option value="1">Low</option>
+													<option value="2">Medium</option>
+													<option value="3">High</option>
+												</select>
+												@if ($errors->has('priority'))
+                                                <span class="text-danger">{{ $errors->first('priority') }}</span>
+                                                @endif
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label>Deadline</label>
+												<input class="form-control" name="deadline" id="deadline" type="datetime-local">
+												@if ($errors->has('deadline'))
+												<span class="text-danger">{{ $errors->first('deadline') }}</span>
+												@endif
+											</div>
+										</div>
+									</div>
+									<div class="submit-section">
+										<button class="btn btn-primary submit-btn">Create</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+<!-- add task create task  -->
+
+
             </div>
 			
 			<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -201,4 +296,39 @@
          );
          </script>
       @endif
+	  <script>
+				$(document).ready(function () {
+					$.ajaxSetup({
+                    headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                    });
+					$('#modalTrigger').click(function(){
+						
+						$.ajax({
+							url:"{{ url('getUsers') }}",
+							type:"POST",
+
+							success:function (data) {
+								$('#assignTo').empty();
+								$.each(data,function(key,value){
+									$('#assignTo').append('<option value="'+value.id+'">'+value.name+'</option>');
+								})
+							}
+						})
+						$.ajax({
+							url:"{{ url('getCompany') }}",
+							type:"POST",
+
+							success:function (data) {
+								$('#company').empty();
+								$.each(data,function(key,value){
+									$('#company').append('<option value="'+value.id+'">'+value.name+'</option>');
+								})
+							}
+						})
+					});
+				});
+
+	  </script>
 		@endsection

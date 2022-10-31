@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('status');
             $table->string('notes')->nullable();
             $table->string('priority');
+            $table->string('company');
             $table->timestamps();
         });
     }

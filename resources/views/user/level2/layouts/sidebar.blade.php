@@ -8,7 +8,7 @@
 							<li class="submenu">
 								<a href="#"><i class="la la-dashboard"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="{{route('level2dash')}}">Dashboard</a></li>
+									<li><a href="{{route('l2.dash')}}">Dashboard</a></li>
 								</ul>
 							</li>
 							<li class="submenu">

@@ -56,7 +56,19 @@ class AuthController extends Controller
         {
             $user->subordinate_to=0;
         }
-       
+        if($request->level==1)
+        {
+            $role=2;
+        }
+        if($request->level==2)
+        {
+            $role=3;
+        }
+        if($request->level==3)
+        {
+            $role=4;
+        }
+        $user->role=$role;       
         $user->password=Hash::make($password);
         $user->hire_date=Carbon::now();
         $user->status="active";

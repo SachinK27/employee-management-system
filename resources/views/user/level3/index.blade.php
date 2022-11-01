@@ -44,7 +44,9 @@
 										</tr>
 									</thead>
 									<tbody>
-										{{$i=1;}}
+										<?php 
+										$i=1; 
+										?>
 									
 										@foreach($data as $task)
 										<?php

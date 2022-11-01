@@ -39,8 +39,9 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        return view('home');
+    {  
+        $data=departments::all();
+        return view('admin.index',compact('data'));
     }
     public function level3()
     {

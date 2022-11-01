@@ -32,13 +32,18 @@
 			<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 				<span class="user-img"><img src="assets/img/profiles/avatar-21.jpg" alt="">
 				<span class="status online"></span></span>
-				@if(Session::has('level2loginId'))
-				<span>{{$level2->name}}</span>
+				@if(!empty(Auth::user()))
+					<span>{{Auth::user()->name}}</span>
 				@endif
 			</a>
 			<div class="dropdown-menu">
-				<a class="dropdown-item" href="{{route('logout')}}">Logout</a>
-				
+				<a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault();
+									document.getElementById('logout-form').submit();">
+										{{ __('Logout') }}
+								</a>
+								<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+					@csrf
+				</form>
 
 			</div>
 		</li>

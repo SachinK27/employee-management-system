@@ -58,7 +58,7 @@
 								{{Session::get('error2')}}
 							</div>
 							@endif
-							<form action="{{url('/login/login')}}" method="POST">
+							<form action="{{route('checkuser')}}" method="POST">
 								@csrf
 								<div class="form-group">
 									<label>Email</label>

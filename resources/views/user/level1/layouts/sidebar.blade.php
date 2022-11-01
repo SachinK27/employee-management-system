@@ -6,7 +6,7 @@
 								<span>Main</span>
 							</li>
 							<li> 
-								<a href="{{route('l1dash')}}"><i class="la la-users"></i> <span>Dashboard</span></a>
+								<a href="{{route('l1.dash')}}"><i class="la la-users"></i> <span>Dashboard</span></a>
 							</li>
 
 							<li> 

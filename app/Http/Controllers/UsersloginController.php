@@ -18,7 +18,6 @@ class UsersloginController extends Controller
     }
 
     public function CheckUsers(Request $request){
-
         $request->validate([
             'email' => 'required',
             'password'=> 'required'

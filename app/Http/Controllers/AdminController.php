@@ -9,10 +9,10 @@ use Session;
 use App\Models\departments;
 class AdminController extends Controller
 {   
-    public function __construct()
-    {
-        $this->middleware('isAdmin');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('isAdmin');
+    // }
     public function users()
     {
         $data=departments::all();

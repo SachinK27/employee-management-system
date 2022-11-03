@@ -26,6 +26,11 @@
 			<script src="assets/js/html5shiv.min.js"></script>
 			<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
+		<style>
+			.remember .form-check input, .remember .form-check label {
+				cursor: pointer;
+			}
+		</style>
     </head>
     <body class="account-page">
 	
@@ -36,7 +41,7 @@
 				
 					<!-- Account Logo -->
 					<div class="account-logo">
-						<a href="index.html"><img src="{{asset('assets/img/logo2.png')}}" alt="Dreamguy's Technologies"></a>
+						<a href="{{ URL::to('/') }}"><img src="{{asset('assets/img/logo2.png')}}" alt="Dreamguy's Technologies"></a>
 					</div>
 					<!-- /Account Logo -->
 					
@@ -44,24 +49,12 @@
 						<div class="account-wrapper">
 							<h3 class="account-title">Login</h3>
 							<p class="account-subtitle">Access to our dashboard</p>
-							
 							<!-- Account Form -->
-
-							@if(Session::has('error1'))
-							<div class="alert alert-danger">
-								{{Session::get('error1')}}
-							</div>
-							@endif
-							@if(Session::has('error2'))
-							<div class="alert alert-danger">
-								{{Session::get('error2')}}
-							</div>
-							@endif
 							<form action="{{ route('login') }}" method="POST">
 								@csrf
 								<div class="form-group">
 									<label>Email</label>
-									<input class="form-control @error('email') is-invalid @enderror" type="email" name="email" required>
+									<input class="form-control @error('email') is-invalid @enderror" type="email" name="email" value="{{ old('email') }}" required>
 									@error('email')
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $message }}</strong>
@@ -82,12 +75,23 @@
 										</span>
 									@enderror
 								</div>
+
+								<div class="row mb-3 remember">
+									<div class="col-md-12">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+		
+											<label class="form-check-label" for="remember">
+												{{ __('Remember Me') }}
+											</label>
+										</div>
+									</div>
+								</div>
 								<div class="form-group text-center">
 									<button class="btn btn-primary account-btn" type="submit">Login</button>
 								</div>
 							</form>
 							<!-- /Account Form -->
-							
 						</div>
 					</div>
 				</div>

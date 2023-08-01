@@ -11,6 +11,7 @@ use App\Http\Controllers\CookieController;
 use App\Http\Controllers\Users\Level1Controller;
 use App\Http\Controllers\Users\Level2Controller;
 use App\Http\Controllers\Users\Level3Controller;
+use App\Http\Controllers\NotificationController;
 // use App\Http\Controllers\UsersloginController;
 use Illuminate\Support\Facades\Auth;
 
@@ -59,6 +60,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('admin.dash');
         Route::get('/users', [AuthController::class,'users'])->name('viewUsers');
         Route::get('/admin/dashboard/users',  [AdminController::class,'users'])->name('viewUsers');
+        Route::get('/admin/notifications',  [NotificationController::class,'list'])->name('notification-list');
+        Route::post('create-notification',  [NotificationController::class,'create'])->name('notification-create');
     });
 
 

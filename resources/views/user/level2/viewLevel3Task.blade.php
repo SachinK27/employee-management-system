@@ -40,21 +40,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										@foreach($tasks as $task)
-										<?php
-                                          $assign_date=$task->assign_date;
-										  $monthNum=substr($assign_date,2,2);
-										  $month_name = date("F", mktime(0, 0, 0, $monthNum, 10));
-										  $assignDate=date('d', strtotime($task->assign_date));
-										  $assignnDatee=$assignDate." ".$month_name;
-										  $deadline=$task->deadline;
-										  $monthNumm=substr($deadline,2,2);
-										  $month_namee = date("F", mktime(0, 0, 0, $monthNumm, 10));
-										  $deadlineDate=date('d',strtotime($task->deadline));
-										  $deadlineTime=date('h:m a',strtotime($task->deadline));
-										  $deadline=$deadlineDate." ".$month_namee." ".$deadlineTime;
-
-                                        ?>
+										@foreach($list as $notification)
 										<tr>
 											<td>1</td>
 											<td>{{$task->task}}</td>

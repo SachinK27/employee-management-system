@@ -15,6 +15,9 @@
 							<li> 
 								<a href="{{route('project.list')}}"><i class="las la-project-diagram"></i> <span>Projects</span></a>
 							</li>
+							<li> 
+								<a href="{{route('notification-list')}}"><i class="las la-project-diagram"></i> <span>Notifications</span></a>
+							</li>
 						</ul>
 					</div>
                 </div>
